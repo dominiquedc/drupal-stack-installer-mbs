@@ -1,0 +1,6 @@
+This contains a drupal lamp stack installer. 
+It will prepare your ubuntu to run drupal. It sets up mysql, creates a db, install php and apache.
+It also installs drush and drush make.
+It executes the make file to get the code for the drupal.
+It comes with a simple install profile that is used for train developers. The profile also lets you localize the drupal.
+Read the instructions at the end to set up your vhost, php.ini, drush PATH and host. 
