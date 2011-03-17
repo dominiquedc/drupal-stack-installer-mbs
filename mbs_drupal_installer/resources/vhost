@@ -1,7 +1,0 @@
-<VirtualHost *:80>
-    ServerAdmin me@myserver
-    DocumentRoot /var/www/multimediabs
-    ServerName multimediabs
-    ServerAlias multimediabs *.multimediabs
-    CustomLog /var/log/apache2/multimediabs.log combined
-</VirtualHost>
