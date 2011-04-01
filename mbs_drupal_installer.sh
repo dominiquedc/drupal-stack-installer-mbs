@@ -154,6 +154,6 @@ color_echo
 color_echo "Open your browser, go to http://$drupal_instance_name and start the 'multimediabs' pressflow install profile"
 color_echo
 color_echo "You can then add code and modules in the Drupal instance directory in $drupal_path ."
-color_echo
-color_echo "Add this to php.ini to make xhprof run extension=xhprof.so and xhprof.output_dir=\"/var/tmp/xhprof\" and restart server"
+#color_echo
+#color_echo "Add this to php.ini to make xhprof run extension=xhprof.so and xhprof.output_dir=\"/var/tmp/xhprof\" and restart server"
 
