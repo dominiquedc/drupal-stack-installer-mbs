@@ -1,0 +1,1 @@
+Apply patch http://drupal.org/node/803026#comment-3280480 for simpletest and pressflow

@@ -6,7 +6,7 @@ function multimediabs_profile_modules() {
     'menu', 'search', 'taxonomy', 'path', 'update', 'syslog', 'comment', 'locale', 'dblog',
 
     // cck
-    'content', 'filefield', 'text', 'imagefield', 'date_api', 'date', 
+    'content', 'filefield', 'text', 'imagefield', 'date_api', 'date', 'date_popup', 'jquery_ui', 
 
     // imagecache
     'imageapi', 'imageapi_gd', 'imagecache', 'imagecache_ui',
@@ -117,8 +117,14 @@ function multimediabs_profile_tasks(&$task, $url) {
     // Update the menu router information.
     menu_rebuild();
 
-    //Activate devel
-    drupal_install_modules(array('devel', 'devel_themer'));
+    //Activate devel and set xhprof
+    drupal_install_modules(array('devel'));
+    
+    /*
+    variable_set('devel_xhprof_enabled', 1);
+    variable_set('devel_xhprof_directory', '/build/buildd/php5-5.3.3/pear-build-download/xhprof-0.9.2');
+    variable_set('devel_xhprof_url', 'http://localhost/xhprof');
+    */
     
     // Move forward to our install batch.
     $task = 'l10n-install';
@@ -221,5 +227,6 @@ function _l10n_install_batch_finished($success, $results) {
   global $theme_key;
   $theme_key = 'garland';
   _block_rehash();
+  install_set_block('user', '0', 'garland', 'left');
   install_set_block('locale', '0', 'garland', 'left');
 }

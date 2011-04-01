@@ -41,6 +41,7 @@ projects[cck][subdir] = contrib
 projects[filefield][subdir] = contrib
 projects[imagefield][subdir] = contrib
 projects[date][subdir] = contrib
+projects[jquery_ui][subdir] = contrib
 projects[imageapi][subdir] = contrib
 projects[imagecache][subdir] = contrib
 
@@ -72,7 +73,6 @@ projects[module_builder][subdir] = contrib
   
 ; Libraries
 ; ---------
-
 
 
 
