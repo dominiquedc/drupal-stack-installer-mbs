@@ -4,3 +4,5 @@ It also installs drush and drush make.
 It executes the make file to get the code for the drupal.
 It comes with a simple install profile that is used for training developers. The profile also lets you localize the drupal.
 Read the instructions at the end to set up your vhost, php.ini, drush PATH and host. 
+
+
