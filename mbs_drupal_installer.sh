@@ -33,7 +33,7 @@ mysql_power_user_password=$3
 color_echo "Starting Drupal install..."
 
 color_echo "Installing Debian/Ubuntu packages..."
-apt-get --yes install apache2 php5 php-pear php5-dev php5-gd mysql-server-5.0 php5-mysql mysql-client wget curl
+apt-get --yes install apache2 php5 php-pear php5-dev php5-gd mysql-server-5.0 php5-mysql mysql-client wget curl php5-curl
 
 color_echo "Setting up the Apache mod_rewrite for Drupal clean urls..."
 a2enmod rewrite
@@ -101,7 +101,7 @@ cp -R $resources_dir/translations $drupal_path/profiles/multimediabs/
 
 color_echo "Copying and completing the Drupal settings file..."
 cp $drupal_path/sites/default/default.settings.php $drupal_path/sites/default/settings.php
-cat $resources_dir/settings_snippet.php >> $drupal_path/sites/default/settings.php
+cp $resources_dir/settings_snippet.php $drupal_path/sites/default/settings_snippet.php
 
 color_echo "Copying jquery.ui to module folder..." 
 cp -R $resources_dir/jquery.ui $drupal_path/sites/all/modules/contrib/jquery_ui/jquery.ui
@@ -134,7 +134,7 @@ apachectl restart
 #chmod 777 /var/tmp/xhprof
 
 color_echo "*) creating an Apache virtual host for $drupal_instance_name with path $drupal_path"
-cp $resources_dir/vhost /etc/apache2/sites-available/
+cp $resources_dir/vhost /etc/apache2/sites-available/mbs
 sed -i "s/multimediabs/$drupal_instance_name/g" /etc/apache2/sites-available/$drupal_instance_name
 
 color_echo
