@@ -126,6 +126,21 @@ function multimediabs_profile_tasks(&$task, $url) {
     variable_set('devel_xhprof_url', 'http://localhost/xhprof');
     */
     
+    //Copy stuff in to the settings file
+		$pieces  = explode('/', __FILE__);
+		foreach ($pieces as $piece) {
+		  if ($piece == 'profiles') {
+		    break;
+		  }
+		  $pieces_out[] = $piece;
+		}
+		$drupal_path = implode('/', $pieces_out);
+
+		$snippet_path = $drupal_path . '/sites/default/settings_snippet.php';
+		$settings_path = $drupal_path . '/sites/default/settings.php';
+		
+		exec('cat ' . $snippet_path . ' >> ' . $settings_path);
+    
     // Move forward to our install batch.
     $task = 'l10n-install';
   }
