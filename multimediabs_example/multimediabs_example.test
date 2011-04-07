@@ -1,0 +1,58 @@
+<?php
+// $Id: multimediabs_example.test
+
+/**
+ * @file
+ * multimediabs_example functionality tests.
+ *
+ */
+
+/**
+ * Test Login
+ */
+class multimediabs_exampleTestCase extends DrupalWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => t('Test multimediabs_example'),
+      'description' => t('Test multimediabs_example.'),
+      'group' => t('multimediabs_example'),
+    );
+  }
+
+  function setUp() {
+    parent::setUp('multimediabs_example');
+
+    //include_once dirname(__FILE__) . '/../inc/multimediabs_example.admin.inc';
+   
+  }
+
+  function testCreatedUpdated() {
+    //Build
+    $arg = 'go';
+    db_query("TRUNCATE TABLE {multimediabs_example}");
+    db_query("INSERT INTO {multimediabs_example} (text) VALUES ('%s')", 'forbidden;body forbidden');
+
+    //Operate
+    $nodes = multimediabs_example_import();
+
+    debug($nodes);
+    //Check   
+    $this->assertEqual($nodes[0]->title, 'forbidden', t('@function Validate title', array('@function' => __FUNCTION__)));
+    $this->assertEqual($nodes[0]->body, 'body forbidden', t('@function Validate body', array('@function' => __FUNCTION__)));
+    $this->assertEqual($nodes[0]->import_status, 'created', t('@function Validate status', array('@function' => __FUNCTION__)));
+  
+    //Build
+    $arg = 'go';
+    db_query("TRUNCATE TABLE {multimediabs_example}");
+    db_query("INSERT INTO {multimediabs_example} (text) VALUES ('%s')", 'forbidden;body forbidden update');
+
+    //Operate
+    $nodes = multimediabs_example_import();
+
+    //Check
+    $this->assertEqual($nodes[0]->title, 'forbidden', t('@function Validate title', array('@function' => __FUNCTION__)));
+    $this->assertEqual($nodes[0]->body, 'body forbidden update', t('@function Validate body', array('@function' => __FUNCTION__)));
+    $this->assertEqual($nodes[0]->import_status, 'updated', t('@function Validate status', array('@function' => __FUNCTION__)));
+  }
+}

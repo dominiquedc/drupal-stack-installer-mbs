@@ -1,0 +1,68 @@
+<?php
+
+// $Id: multimediabs_example.install Exp $
+
+/**
+ * Implementation of hook_install()
+ */
+function multimediabs_example_install() {
+  drupal_install_schema('multimediabs_example');
+  drupal_set_message(t('Multimediabs example module installed successfully.')); 
+}
+
+/**
+ * implementation hook_install_schema()
+ */
+function multimediabs_example_schema() {
+  $schema['multimediabs_example'] = array(
+    'description' => t('TODO: please describe this table!'),
+    'fields' => array(
+      'text' => array(
+        'description' => t('TODO: please describe this field!'),
+        'type' => 'varchar',
+        'length' => '2000',
+        'not null' => TRUE,
+      ),      
+    ),    
+  );
+  
+  return $schema;
+}
+
+/**
+ * Implementation hook_uninstall_schema
+ */
+function multimediabs_example_uninstall() {
+  drupal_uninstall_schema('multimediabs_example');
+  drupal_set_message(t('Multimediabs example module uninstalled successfully.'));
+}
+
+//Updates
+function multimediabs_example_update_1001() {
+
+  $ret = array();  
+  
+      //Set site name
+  $values = array(
+    'en' => 'Multimedia Business Services pressflow',
+    'fr' => 'Pressflow Multimedia Business Services'
+  );
+  
+  update_api_i18n_variable_set($ret, 'site_name', $values);
+
+  return $ret;
+}
+
+function update_api_i18n_variable_set(&$ret, $name, $values, $langcode = NULL) {
+  if (!$langcode) {
+    foreach (language_list() as $lang) {
+      i18n_variable_set($name, $values[$lang->language], $lang->language);
+    }
+  }
+  else {
+    i18n_variable_set($name, $values, $langcode);
+  }
+  
+  $message = t('i18n variable @var set', array('@var' => $name));
+  $ret[] = array('success' => true, 'query' => $message); 
+}
